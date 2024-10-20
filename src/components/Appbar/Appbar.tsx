@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   AppBar,
   Toolbar,
@@ -7,12 +7,12 @@ import {
   Box,
   FormControlLabel,
   Switch,
-} from "@mui/material";
-import { Logout } from "@mui/icons-material";
-import { useDispatch, useSelector } from "react-redux";
+} from '@mui/material';
+import { Logout } from '@mui/icons-material';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { logout } from "../../redux/slices/authSlice";
-import { themeSelector, toggleTheme } from "src/redux/slices/themeSlice";
+import { logout } from '../../redux/slices/authSlice';
+import { themeSelector, toggleTheme } from 'src/redux/slices/themeSlice';
 
 export const Navbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,17 +33,17 @@ export const Navbar: React.FC = () => {
         </Typography>
 
         <Box display="flex" alignItems="center">
-          <Box sx={{ display: "flex", alignItems: "center", p: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', p: 2 }}>
             <FormControlLabel
               control={
                 <Switch
                   checked={isDarkMode}
                   onChange={handleToggle}
                   color="primary"
-                  inputProps={{ "aria-label": "controlled" }}
+                  inputProps={{ 'aria-label': 'controlled' }}
                 />
               }
-              label={isDarkMode ? "Dark Mode" : "Light Mode"}
+              label={isDarkMode ? 'Dark Mode' : 'Light Mode'}
             />
           </Box>
           <Button color="inherit" startIcon={<Logout />} onClick={handleLogout}>

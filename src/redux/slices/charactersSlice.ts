@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { Character } from "../../interfaces/character/character";
-import { RootState } from "../store";
+import { createSlice } from '@reduxjs/toolkit';
+import { Character } from '../../interfaces/character/character';
+import { RootState } from '../store';
 
 interface CharactersState {
   data: Character[];
@@ -9,20 +9,20 @@ interface CharactersState {
 
 const initialState: CharactersState = {
   data: [],
-  hasMore: "",
+  hasMore: '',
 };
 
 const charactersSlice = createSlice({
-  name: "characters",
+  name: 'characters',
   initialState,
   reducers: {
     setCharacters: (state, { payload }) => ({
       data: [...state.data, ...payload.results],
       hasMore: payload.next,
     }),
-    resetCharacters: (state) => {
+    resetCharacters: state => {
       state.data = [];
-      state.hasMore = "";
+      state.hasMore = '';
     },
   },
 });

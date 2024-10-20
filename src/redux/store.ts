@@ -1,16 +1,16 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
-import storage from "redux-persist/lib/storage";
-import { persistStore, persistReducer } from "redux-persist";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer } from 'redux-persist';
 
-import rootReducer from "./slices/rootReducer";
-import baseCreateApi from "src/api/baseCreateApi";
+import rootReducer from './slices/rootReducer';
+import baseCreateApi from 'src/api/baseCreateApi';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   version: 4,
   storage,
-  whitelist: ["auth", "theme"],
+  whitelist: ['auth', 'theme'],
 };
 
 const reducers = combineReducers({
@@ -22,7 +22,7 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false,
     }).concat(baseCreateApi.middleware),

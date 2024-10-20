@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 interface InfiniteScrollProps {
   hasMore: boolean;
@@ -24,9 +24,9 @@ export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [hasMore, onLoadMore, isLoading]);
 

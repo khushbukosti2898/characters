@@ -1,5 +1,5 @@
-import React from "react";
-import { Typography, Button, Container } from "@mui/material";
+import React from 'react';
+import { Typography, Button, Container } from '@mui/material';
 
 interface ErrorComponentProps {
   onRetry: () => void;
@@ -10,8 +10,8 @@ export const ErrorComponent: React.FC<ErrorComponentProps> = ({ onRetry }) => {
     <Container
       maxWidth="sm"
       sx={{
-        textAlign: "center",
-        marginTop: "2rem",
+        textAlign: 'center',
+        marginTop: '2rem',
       }}
     >
       <Typography variant="h5" color="error" gutterBottom>

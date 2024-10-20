@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -8,12 +8,12 @@ import {
   Typography,
   IconButton,
   Button,
-} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import { Character } from "../../../interfaces/character/character";
-import { useLazyGetHomeworldQuery } from "../../../api/characterAPI";
-import { getIdFromUrl } from "../../../utils/utils";
-import Loader from "../../Loader/Loader";
+} from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import { Character } from '../../../interfaces/character/character';
+import { useLazyGetHomeworldQuery } from '../../../api/characterAPI';
+import { getIdFromUrl } from '../../../utils/utils';
+import Loader from '../../Loader/Loader';
 
 interface HomeworldDetailsProps {
   homeworld: Homeworld;
@@ -54,7 +54,7 @@ export const CharacterModal: React.FC<CharacterModalProps> = ({
 }) => {
   const [homeworld, setHomeworld] = useState<Homeworld | null>(null);
   const [getHomeworld, { isLoading }] = useLazyGetHomeworldQuery();
-  console.log("character", character);
+  console.log('character', character);
 
   // Fetch homeworld details
   useEffect(() => {
@@ -63,15 +63,15 @@ export const CharacterModal: React.FC<CharacterModalProps> = ({
       getHomeworld({ id: homeworldId })
         .unwrap()
         .then(setHomeworld)
-        .catch((error) => console.error("Failed to fetch homeworld:", error));
+        .catch(error => console.error('Failed to fetch homeworld:', error));
     }
   }, [character?.homeworld, getHomeworld]);
 
   // Memoized formatted date for better performance
   const formattedDate = useMemo(() => {
     return character?.created
-      ? new Intl.DateTimeFormat("en-GB").format(new Date(character.created))
-      : "";
+      ? new Intl.DateTimeFormat('en-GB').format(new Date(character.created))
+      : '';
   }, [character?.created]);
 
   return (
@@ -87,9 +87,9 @@ export const CharacterModal: React.FC<CharacterModalProps> = ({
         id="character-dialog-title"
         data-testid="modal-title"
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
         }}
       >
         {character?.name}
@@ -105,8 +105,8 @@ export const CharacterModal: React.FC<CharacterModalProps> = ({
       <DialogContent dividers>
         <Box tabIndex={0} aria-label="Character details">
           <Typography id="character-dialog-description" variant="body1">
-            <strong>Height:</strong>{" "}
-            {(parseInt(character?.height || "0") / 100).toFixed(2)} meters
+            <strong>Height:</strong>{' '}
+            {(parseInt(character?.height || '0') / 100).toFixed(2)} meters
           </Typography>
           <Typography variant="body1">
             <strong>Mass:</strong> {character?.mass} kg

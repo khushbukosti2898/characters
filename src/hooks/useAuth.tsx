@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { loginFailure, loginSuccess } from "../redux/slices/authSlice";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginFailure, loginSuccess } from '../redux/slices/authSlice';
 
 interface UseAuthProps {
   username: string;
@@ -13,13 +13,13 @@ export const useAuth = () => {
 
   const login = ({ username, password }: UseAuthProps) => {
     // Mock authentication logic
-    if (username === "user" && password === "password") {
-      const fakeToken = "fake-jwt-token";
+    if (username === 'user' && password === 'password') {
+      const fakeToken = 'fake-jwt-token';
       dispatch(loginSuccess({ token: fakeToken }));
       setError(null);
     } else {
-      dispatch(loginFailure({ error: "Invalid credentials" }));
-      setError("Invalid username or password");
+      dispatch(loginFailure({ error: 'Invalid credentials' }));
+      setError('Invalid username or password');
     }
   };
 

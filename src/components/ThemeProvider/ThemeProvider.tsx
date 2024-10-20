@@ -1,21 +1,21 @@
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import {
   createTheme,
   ThemeProvider as MUIThemeProvider,
-} from "@mui/material/styles";
-import { themeSelector } from "src/redux/slices/themeSlice";
-import { GlobalStyles } from "@mui/material";
+} from '@mui/material/styles';
+import { themeSelector } from 'src/redux/slices/themeSlice';
+import { GlobalStyles } from '@mui/material';
 
 // Define color constants for light and dark modes
 const LIGHT_MODE = {
-  background: "#ffffff",
-  text: "#000000",
+  background: '#ffffff',
+  text: '#000000',
 };
 
 const DARK_MODE = {
-  background: "#121212",
-  text: "#ffffff",
+  background: '#121212',
+  text: '#ffffff',
 };
 
 const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -28,10 +28,10 @@ const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     () =>
       createTheme({
         palette: {
-          mode: isDarkMode ? "dark" : "light",
+          mode: isDarkMode ? 'dark' : 'light',
         },
       }),
-    [isDarkMode]
+    [isDarkMode],
   );
 
   // Use appropriate colors based on the current mode

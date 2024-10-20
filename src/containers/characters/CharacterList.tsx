@@ -1,37 +1,37 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Stack } from "@mui/material";
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Stack } from '@mui/material';
 
-import { SearchBar } from "../../components/SearchBar/SearchBar";
-import { CharacterModal } from "../../components/Character/CharacterModal/CharacterModal";
+import { SearchBar } from '../../components/SearchBar/SearchBar';
+import { CharacterModal } from '../../components/Character/CharacterModal/CharacterModal';
 import {
   useLazyGetPeopleQuery,
   useGetFilmsQuery,
-} from "../../api/characterAPI";
+} from '../../api/characterAPI';
 import {
   charactersSelector,
   hasMoreCharactersSelector,
   resetCharacters,
-} from "../../redux/slices/charactersSlice";
-import { getPageNumber } from "../../utils/utils";
-import { Character } from "../../interfaces/character/character";
-import Loader from "../../components/Loader/Loader";
-import { ErrorComponent } from "src/components/Error/ErrorComponent";
-import { useDebounce } from "src/hooks/useDebounce";
-import { InfiniteScroll } from "src/components/InfiniteScroll/InfiniteScroll";
-import { CharacterList } from "src/components/Character/CharacterList/CharacterList";
-import { SelectDropdown } from "src/components/core/SelectDropdown/SelectDropdown";
+} from '../../redux/slices/charactersSlice';
+import { getPageNumber } from '../../utils/utils';
+import { Character } from '../../interfaces/character/character';
+import Loader from '../../components/Loader/Loader';
+import { ErrorComponent } from 'src/components/Error/ErrorComponent';
+import { useDebounce } from 'src/hooks/useDebounce';
+import { InfiniteScroll } from 'src/components/InfiniteScroll/InfiniteScroll';
+import { CharacterList } from 'src/components/Character/CharacterList/CharacterList';
+import { SelectDropdown } from 'src/components/core/SelectDropdown/SelectDropdown';
 
 export const Characters: React.FC = () => {
   const dispatch = useDispatch();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedFilm, setSelectedFilm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedFilm, setSelectedFilm] = useState('');
   const [speciesMap, setSpeciesMap] = useState<{ [key: string]: string }>({});
   const [fetchedSpeciesUrls, setFetchedSpeciesUrls] = useState<Set<string>>(
-    new Set()
+    new Set(),
   );
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
-    null
+    null,
   );
 
   const characters = useSelector(charactersSelector);
@@ -49,29 +49,32 @@ export const Characters: React.FC = () => {
 
   // Memoize character fetching
   const fetchSpeciesData = useCallback(async () => {
-    const speciesUrls = characters.flatMap((character) => character.species);
+    const speciesUrls = characters.flatMap(character => character.species);
     const uniqueSpeciesUrls = [...new Set(speciesUrls)];
     const newSpeciesUrls = uniqueSpeciesUrls.filter(
-      (url) => !fetchedSpeciesUrls.has(url)
+      url => !fetchedSpeciesUrls.has(url),
     );
 
     if (newSpeciesUrls.length === 0) return;
 
     try {
-      const speciesPromises = newSpeciesUrls.map((url) =>
-        fetch(url).then((res) => res.json())
+      const speciesPromises = newSpeciesUrls.map(url =>
+        fetch(url).then(res => res.json()),
       );
 
       const speciesData = await Promise.all(speciesPromises);
-      const newSpeciesMap = speciesData.reduce((map, species) => {
-        map[species.url] = species.name;
-        return map;
-      }, {} as { [key: string]: string });
+      const newSpeciesMap = speciesData.reduce(
+        (map, species) => {
+          map[species.url] = species.name;
+          return map;
+        },
+        {} as { [key: string]: string },
+      );
 
-      setSpeciesMap((prev) => ({ ...prev, ...newSpeciesMap }));
-      setFetchedSpeciesUrls((prev) => new Set([...prev, ...newSpeciesUrls]));
+      setSpeciesMap(prev => ({ ...prev, ...newSpeciesMap }));
+      setFetchedSpeciesUrls(prev => new Set([...prev, ...newSpeciesUrls]));
     } catch (error) {
-      console.error("Failed to fetch species data", error);
+      console.error('Failed to fetch species data', error);
     }
   }, [characters, fetchedSpeciesUrls]);
 
@@ -112,14 +115,14 @@ export const Characters: React.FC = () => {
   // Memoize filtered characters
   const searchedAndFilteredCharacters = useMemo(
     () =>
-      characters.filter((character) =>
-        selectedFilm ? character.films.includes(selectedFilm) : true
+      characters.filter(character =>
+        selectedFilm ? character.films.includes(selectedFilm) : true,
       ),
-    [characters, selectedFilm]
+    [characters, selectedFilm],
   );
 
   const filmOptions = filmsData
-    ? filmsData.map((film) => ({ label: film.title, value: film.url }))
+    ? filmsData.map(film => ({ label: film.title, value: film.url }))
     : [];
 
   if (isError) {
@@ -138,7 +141,7 @@ export const Characters: React.FC = () => {
         <SelectDropdown
           label="Film"
           value={selectedFilm}
-          onChange={(e) => setSelectedFilm(e.target.value)}
+          onChange={e => setSelectedFilm(e.target.value)}
           options={filmOptions}
           isLoading={isFilmLoading}
         />

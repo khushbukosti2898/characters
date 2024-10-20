@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Button,
   TextField,
@@ -8,15 +8,15 @@ import {
   Container,
   Paper,
   InputAdornment,
-} from "@mui/material";
-import { Lock, Person } from "@mui/icons-material";
-import { useAuth } from "src/hooks/useAuth";
+} from '@mui/material';
+import { Lock, Person } from '@mui/icons-material';
+import { useAuth } from 'src/hooks/useAuth';
 
 export const Login: React.FC = () => {
   const { login, error } = useAuth();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ export const Login: React.FC = () => {
           elevation={6}
           sx={{
             p: 4,
-            width: "420px",
+            width: '420px',
           }}
         >
           <Typography variant="h4" gutterBottom align="center" sx={{ mb: 3 }}>
@@ -49,7 +49,7 @@ export const Login: React.FC = () => {
                 variant="outlined"
                 fullWidth
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={e => setUsername(e.target.value)}
                 required
                 slotProps={{
                   input: {
@@ -60,7 +60,7 @@ export const Login: React.FC = () => {
                     ),
                   },
                 }}
-                sx={{ backgroundColor: "#fff", borderRadius: "4px" }}
+                sx={{ backgroundColor: '#fff', borderRadius: '4px' }}
               />
             </Box>
             <Box mb={2}>
@@ -70,7 +70,7 @@ export const Login: React.FC = () => {
                 variant="outlined"
                 fullWidth
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
                 required
                 slotProps={{
                   input: {
@@ -81,7 +81,7 @@ export const Login: React.FC = () => {
                     ),
                   },
                 }}
-                sx={{ backgroundColor: "#fff", borderRadius: "4px" }}
+                sx={{ backgroundColor: '#fff', borderRadius: '4px' }}
               />
             </Box>
             {error && (
@@ -96,10 +96,10 @@ export const Login: React.FC = () => {
               fullWidth
               sx={{
                 py: 1.5,
-                fontWeight: "bold",
-                backgroundColor: "#3f51b5",
-                "&:hover": {
-                  backgroundColor: "#303f9f",
+                fontWeight: 'bold',
+                backgroundColor: '#3f51b5',
+                '&:hover': {
+                  backgroundColor: '#303f9f',
                 },
               }}
             >

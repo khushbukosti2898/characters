@@ -1,7 +1,7 @@
-import { Species } from "src/interfaces/species/species";
-import { setCharacters } from "../redux/slices/charactersSlice";
-import baseCreateApi from "./baseCreateApi";
-import { Film } from "src/interfaces/film/film";
+import { Species } from 'src/interfaces/species/species';
+import { setCharacters } from '../redux/slices/charactersSlice';
+import baseCreateApi from './baseCreateApi';
+import { Film } from 'src/interfaces/film/film';
 
 const setPeopleAsyncHandler = async ({ dispatch, queryFulfilled }: any) => {
   try {
@@ -15,18 +15,18 @@ const setPeopleAsyncHandler = async ({ dispatch, queryFulfilled }: any) => {
 };
 
 export const characterAPi = baseCreateApi.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getPeople: builder.query({
       query: (args: { [key: string]: number | string }) => {
         // Construct the query string dynamically based on the keys present in args
         const queryParams = Object.entries(args)
           .filter(([_, value]) => value !== undefined && value !== null)
           .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-          .join("&");
+          .join('&');
 
         return {
           url: `people/?${queryParams}`,
-          method: "GET",
+          method: 'GET',
         };
       },
       keepUnusedDataFor: 0,
@@ -37,7 +37,7 @@ export const characterAPi = baseCreateApi.injectEndpoints({
     getHomeworld: builder.query({
       query: (args: { id: string }) => ({
         url: `planets/${args.id}`,
-        method: "GET",
+        method: 'GET',
       }),
     }),
     getSpecies: builder.query({

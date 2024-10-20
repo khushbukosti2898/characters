@@ -1,7 +1,7 @@
-import React, { memo } from "react";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { Character } from "../../../interfaces/character/character";
-import { getSpeciesColor } from "../../../utils/colorMapper";
+import React, { memo } from 'react';
+import { Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Character } from '../../../interfaces/character/character';
+import { getSpeciesColor } from '../../../utils/colorMapper';
 
 interface CharacterCardProps {
   character: Character;
@@ -11,10 +11,10 @@ interface CharacterCardProps {
 export const CharacterCard: React.FC<CharacterCardProps> = memo(
   ({ character, onClick }) => {
     const backgroundColor = getSpeciesColor(
-      (character.species[0] || "").toLowerCase()
+      (character.species[0] || '').toLowerCase(),
     );
 
-    console.log("character 111", character);
+    console.log('character 111', character);
 
     return (
       <Card
@@ -22,16 +22,16 @@ export const CharacterCard: React.FC<CharacterCardProps> = memo(
         data-testid={`character-card-${character.name.toLowerCase()}`}
         sx={{
           bgcolor: backgroundColor,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: "16px 0",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: '16px 0',
           borderRadius: 2,
-          width: "100%",
-          cursor: "pointer",
-          transition: "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
-          "&:hover": {
-            transform: "scale(1.05)",
+          width: '100%',
+          cursor: 'pointer',
+          transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
+          '&:hover': {
+            transform: 'scale(1.05)',
           },
         }}
       >
@@ -43,7 +43,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = memo(
             width: 200,
             height: 200,
             borderRadius: 2,
-            objectFit: "cover",
+            objectFit: 'cover',
           }}
         />
         <CardContent>
@@ -53,5 +53,5 @@ export const CharacterCard: React.FC<CharacterCardProps> = memo(
         </CardContent>
       </Card>
     );
-  }
+  },
 );

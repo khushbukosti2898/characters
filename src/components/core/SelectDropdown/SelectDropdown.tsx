@@ -1,6 +1,12 @@
-import React from "react";
-import { MenuItem, Select, FormControl, InputLabel, SelectChangeEvent } from "@mui/material";
-import Spinner from "@mui/material/CircularProgress";
+import React from 'react';
+import {
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  SelectChangeEvent,
+} from '@mui/material';
+import Spinner from '@mui/material/CircularProgress';
 
 interface SelectDropdownProps {
   label: string;
@@ -22,11 +28,11 @@ export const SelectDropdown: React.FC<SelectDropdownProps> = ({
       <InputLabel>{label}</InputLabel>
       <Select value={value} onChange={onChange} label={label}>
         {isLoading ? (
-          <MenuItem sx={{ justifyContent: "center" }}>
+          <MenuItem sx={{ justifyContent: 'center' }}>
             <Spinner size={20} thickness={2} />
           </MenuItem>
         ) : (
-          options.map((option) => (
+          options.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>

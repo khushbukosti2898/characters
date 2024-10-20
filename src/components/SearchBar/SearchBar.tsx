@@ -1,6 +1,6 @@
-import React, { memo, useState } from "react";
-import { TextField, InputAdornment } from "@mui/material";
-import { Search as SearchIcon } from "@mui/icons-material";
+import React, { memo, useState } from 'react';
+import { TextField, InputAdornment } from '@mui/material';
+import { Search as SearchIcon } from '@mui/icons-material';
 
 interface SearchBarProps {
   searchQuery: string;
@@ -37,5 +37,5 @@ export const SearchBar: React.FC<SearchBarProps> = memo(
         }}
       />
     );
-  }
+  },
 );

@@ -5,10 +5,10 @@ import {
   FetchBaseQueryError,
   fetchBaseQuery,
   retry,
-} from "@reduxjs/toolkit/query/react";
+} from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://swapi.dev/api",
+  baseUrl: 'https://swapi.dev/api',
 });
 
 const baseQueryWithReauth: BaseQueryFn<
@@ -24,7 +24,7 @@ const baseQueryWithReauth: BaseQueryFn<
 };
 
 const baseCreateApi = createApi({
-  reducerPath: "api",
+  reducerPath: 'api',
   baseQuery: retry(baseQueryWithReauth, { maxRetries: 0 }),
   endpoints: () => ({}),
 });

@@ -1,9 +1,9 @@
-import React from "react";
-import { Stack } from "@mui/material";
-import { CharacterCard } from "../CharacterCard/CharacterCard";
-import { NoDataFound } from "../../NoDataFound/NoDataFound";
-import ErrorBoundary from "../../Error/ErrorBoundary";
-import { Character } from "../../../interfaces/character/character";
+import React from 'react';
+import { Stack } from '@mui/material';
+import { CharacterCard } from '../CharacterCard/CharacterCard';
+import { NoDataFound } from '../../NoDataFound/NoDataFound';
+import ErrorBoundary from '../../Error/ErrorBoundary';
+import { Character } from '../../../interfaces/character/character';
 
 interface CharacterListProps {
   characters: Character[];
@@ -22,8 +22,8 @@ export const CharacterList: React.FC<CharacterListProps> = ({
 
   return (
     <Stack gap={2} alignItems="center">
-      {characters.map((character) => {
-        const speciesNames = character.species.map((url) => speciesMap[url]);
+      {characters.map(character => {
+        const speciesNames = character.species.map(url => speciesMap[url]);
         return (
           <ErrorBoundary key={character.name}>
             <CharacterCard
