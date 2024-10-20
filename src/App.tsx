@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "./redux/store";
+import { Login } from "./components/Login/Login";
+import { Navbar } from "./components/Appbar/Appbar";
+import ErrorBoundary from "./components/Error/ErrorBoundary";
+import ThemeProvider from "./components/ThemeProvider/ThemeProvider";
+import { Characters } from "./containers/characters/CharacterList";
 
-function App() {
+const App: React.FC = () => {
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+
+  if (!isAuthenticated) {
+    return <Login />;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <Navbar />
+      <ErrorBoundary>
+        <Characters />
+      </ErrorBoundary>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
